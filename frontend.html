@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crowd Density Prediction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-lg">
+    <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">Crowd Density Predictor</h1>
+
+    <!-- Upload input -->
+    <label class="block mb-3 text-gray-700 font-semibold">Upload Image or Video:</label>
+    <input type="file" id="mediaInput" accept="image/,video/" class="w-full p-2 border rounded mb-4" />
+
+    <!-- Preview -->
+    <div id="preview" class="mb-4"></div>
+
+    <!-- Predict Button -->
+    <button
+      onclick="predictCrowdDensity()"
+      class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+    >
+      Predict Crowd Density
+    </button>
+
+    <!-- Result -->
+    <div id="result" class="mt-6 text-center text-lg font-semibold text-green-600"></div>
+  </div>
+
+  <script>
+    const mediaInput = document.getElementById("mediaInput");
+    const preview = document.getElementById("preview");
+    const result = document.getElementById("result");
+
+    mediaInput.addEventListener("change", () => {
+      const file = mediaInput.files[0];
+      if (!file) return;
+
+      preview.innerHTML = "";
+
+      const mediaURL = URL.createObjectURL(file);
+
+      if (file.type.startsWith("image")) {
+        const img = document.createElement("img");
+        img.src = mediaURL;
+        img.className = "w-full rounded-lg";
+        preview.appendChild(img);
+      } else if (file.type.startsWith("video")) {
+        const video = document.createElement("video");
+        video.src = mediaURL;
+        video.controls = true;
+        video.className = "w-full rounded-lg";
+        preview.appendChild(video);
+      }
+    });
+
+    function predictCrowdDensity() {
+      // This is a placeholder – hook this to your backend/model
+      const mockDensity = ["Low", "Moderate", "High", "Very High"];
+      const prediction = mockDensity[Math.floor(Math.random() * mockDensity.length)];
+      result.textContent = Predicted Crowd Density: ${prediction};
+    }
+  </script>
+</body>
+</html>
