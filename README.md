@@ -5,5 +5,5 @@ This project detects humans in real-time video using the YOLOv5 model, estimates
 - Crowd count estimation
 - Alert via Telegram when crowd is high
 ## 📁 Folder Structure
-- /code: Python scripts and model files
-- /report: Final project report (PDF)
+- Python scripts and model files
+- Final project report (PDF)
